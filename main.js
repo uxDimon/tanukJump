@@ -1,7 +1,12 @@
-import "./style.css";
-import "./style.scss";
+import "./style/style.css";
+import "./style/style.scss";
+import Vue from "vue";
+import Vuex from "vuex";
+import App from "./vue/App.vue";
+import store from "./vue/store";
 
-document.querySelector("#app").innerHTML = `
-  <h1>Ты хуй</h1>
-  <a href="https://vitejs.dev/guide/features.html" target="_blank">Documentation</a>
-`;
+Vue.use(Vuex);
+new Vue({
+	store,
+	render: (h) => h(App),
+}).$mount("#app");
