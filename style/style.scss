@@ -1,4 +1,43 @@
+$font-primary: "Geometria", sans-serif;
+$font-number: "Quantico", sans-serif;
+
+@font-face {
+	font-family: "Geometria";
+	src: local("Geometria"), url("../fonts/Geometria-Bold.woff2") format("woff2"), url("../fonts/Geometria-Bold.woff") format("woff");
+	font-weight: 600;
+	font-style: normal;
+}
+@font-face {
+	font-family: "Quantico";
+	src: local("Quantico"), url("../fonts/quantico-v10-latin-700.woff2") format("woff2"), url("../fonts/quantico-v10-latin-700.woff") format("woff");
+	font-weight: 700;
+	font-style: normal;
+}
+
+* {
+	box-sizing: border-box;
+	outline-offset: 4px;
+}
+
+ul,
+ol {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+input:not([type="checkbox"]):not([type="radio"]),
+textarea,
+select,
+button {
+	appearance: none;
+	font-family: $font-primary;
+}
+
 body {
-	background: #333;
-	color: #fff;
+	margin: 0;
+	padding: 0;
+	font-family: $font-primary;
+	font-style: normal;
+	font-weight: 600;
 }

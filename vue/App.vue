@@ -1,6 +1,6 @@
 <template>
   <div class="test">
-    {{ maessage }}
+    <h1>{{ maessage }}</h1>
 
     <app-panel class="tesr2"></app-panel>
   </div>
