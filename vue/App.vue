@@ -1,17 +1,16 @@
 <template>
-  <div class="test">
-    <h1>{{ maessage }}</h1>
-
-    <app-panel class="tesr2"></app-panel>
+  <div class="game-wrap">
+    <div></div>
+    <panel class="tesr2"></panel>
   </div>
 </template>
 
 <script>
-import appPanel from "./components/panel.vue";
+import panel from "./components/panel.vue";
 
 export default {
   components: {
-    appPanel,
+    panel,
   },
   data() {
     return {
@@ -22,11 +21,11 @@ export default {
 </script>
 
 <style lang="scss">
-.test {
-  background: rgb(138, 178, 185);
-
-  .tesr2 {
-    background: brown;
-  }
+.game-wrap {
+  width: 890px;
+  height: 500px;
+  background: #222222;
+  display: grid;
+  grid-template-rows: 1fr 98px;
 }
 </style>
