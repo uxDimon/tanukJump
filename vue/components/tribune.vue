@@ -28,7 +28,7 @@
 		<div class="tribune__row">
 			<div class="tribune__plase" style="width: calc(75px * 5)"></div>
 			<div class="tribune__plase" style="width: calc(75px * 5); background-position-y: -93px"></div>
-			<div class="tribune__plase" style="width: calc(75px * 6); background-position-y: -186px"></div>
+			<div class="tribune__plase" style="width: calc(75px * 3); background-position-y: -186px"></div>
 		</div>
 	</div>
 </template>

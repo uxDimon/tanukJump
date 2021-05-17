@@ -43,4 +43,15 @@ body {
 	background-color: #333;
 }
 
+.action-button {
+	position: absolute;
+	top: 50%;
+	right: 0;
+	transform: translateY(-50%);
+	background: linear-gradient(180deg, #181836 0%, #323251 100%);
+	box-shadow: 0px 2px 0px #181836;
+	border-radius: 46px 0px 0px 46px;
+	padding: 10px 10px 12px;
+}
+
 // ???????
