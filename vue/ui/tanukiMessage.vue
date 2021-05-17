@@ -44,7 +44,7 @@ $font-number: "Quantico", sans-serif;
     position: absolute;
     top: -40px;
     left: 0;
-    background-image: url("../vue/sprite/tanuki_message.png");
+    background-image: url("../sprite/tanuki_message.png");
     background-size: 980px;
     background-repeat: no-repeat;
     z-index: 3;
