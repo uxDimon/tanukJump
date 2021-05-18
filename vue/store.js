@@ -30,15 +30,12 @@ export default new Vuex.Store({
 			}
 			return score;
 		},
-		
 		combo: state => state.combo,
 		gameTime: state => {
 			const pad2 = (num) => ("" + num).length < 2 ? "0".concat(num) : num;
 			const m = Math.floor(state.time / 60);
 			const s = state.time % 60;
-			var result = (""+m).concat(':', pad2(s));
-
-			return result;
+			return ("" + m).concat(':', pad2(s));
 		},
 	},
 	mutations: {
@@ -46,7 +43,7 @@ export default new Vuex.Store({
 
 			state.score = 0;
 			state.combo = 0;
-			state.time = 120;
+			state.time = 5;
 
 			state.panel.heart.list = [
 				{ point: 0, index: 1 },
@@ -56,8 +53,14 @@ export default new Vuex.Store({
 
 			setInterval(() => {
 				if(!state.pause) state.time--;
+				if(state.time === 0) {
+					this.commit('gameOver');
+				}
 			}, 1000);
 
+		},
+		gameOver(state) {
+			state.pause = true;
 		},
 		comboPlus(state, options) {
 			state.combo++;
