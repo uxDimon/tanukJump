@@ -39,4 +39,7 @@ export default {
     display: grid;
     grid-template-rows: 1fr 98px;
 }
+.lol{
+    margin: 0;
+}
 </style>
