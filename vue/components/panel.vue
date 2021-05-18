@@ -5,28 +5,31 @@
 				<div class="info-bar">
 					<div class="info-bar__name">Жизни</div>
 					<div class="info-bar__body info-bar__body_live">
-						<div class="info-bar__hard"></div>
-						<div class="info-bar__hard"></div>
-						<div class="info-bar__hard" :style="hardStyle"></div>
+						<div 
+							class="info-bar__hard"
+							v-for="(item, key) in heartList"
+							:key="key"
+							:style="{ backgroundPositionX: `${item.point}px` }"
+						></div>
 					</div>
 				</div>
 				<div class="info-bar">
 					<div class="info-bar__name">Очки</div>
-					<div class="info-bar__body" style="width: 110px">0000</div>
+					<div class="info-bar__body" style="width: 110px">{{score}}</div>
 				</div>
 			</div>
 		</div>
-		<div class="bot-panel__logo">
+		<div class="bot-panel__logo" @click="animateHeartMinus">
 			<main-logo></main-logo>
 		</div>
 		<div class="bot-panel__right">
 			<div class="bot-panel__info">
 				<div class="info-bar">
-					<div class="info-bar__name">Комбо!</div>
-					<div class="info-bar__body" style="width: 72px">5</div>
+					<div class="info-bar__name" @click="comboPlus">Комбо!</div>
+					<div class="info-bar__body" style="width: 72px">{{combo}}</div>
 				</div>
 				<div class="info-bar">
-					<div class="info-bar__body info-bar__body_time">1:59</div>
+					<div class="info-bar__body info-bar__body_time">{{time}}</div>
 				</div>
 			</div>
 		</div>
@@ -35,15 +38,31 @@
 
 <script>
 	import mainLogo from "../icon/main-logo.vue";
-
+	import { mapGetters, mapMutations } from 'vuex';
 	export default {
 		components: {
 			mainLogo,
 		},
+		computed: {
+			...mapGetters({
+				heartList: 'heartList',
+				score: 'score',
+				combo: 'combo',
+				time: 'gameTime',
+			}),
+		},
+		methods: {
+			...mapMutations({
+				animateHeartMinus: "animateHeartMinus",
+				animateHeartPlus: "animateHeartPlus",
+				scorePlus: "scorePlus",
+				comboPlus: "comboPlus",
+			}),
+		},
 		data() {
 			return {
 				hardStyle: {
-					backgroundPositionX: "-300px",
+					backgroundPositionX: "0px",
 				},
 			};
 		},

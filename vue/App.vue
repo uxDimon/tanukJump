@@ -2,7 +2,7 @@
     <div class="game-wrap">
         <tribune></tribune>
         <panel></panel>
-        <pop-up v-if="popUp"></pop-up>
+        <!-- <pop-up v-if="popUp"></pop-up> -->
     </div>
 </template>
 
@@ -10,6 +10,7 @@
 import panel from "./components/panel.vue";
 import tribune from "./components/tribune.vue";
 import popUp from "./components/popUp.vue";
+import { mapGetters, mapMutations } from 'vuex';
 
 export default {
     components: {
@@ -17,15 +18,23 @@ export default {
         tribune,
         popUp,
     },
+    methods: {
+		...mapMutations({
+			startGame: "startGame"
+		}),
+	},
+    created() {
+        this.startGame();
+    },
     data() {
         return {
             maessage: "хуита",
         };
     },
     computed: {
-        popUp() {
-            return this.$store.state.popUp;
-        },
+        ...mapGetters({
+            popUp: 'popUp',
+        }),
     },
 };
 </script>
