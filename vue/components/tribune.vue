@@ -32,7 +32,7 @@
                 class="tribune__plase"
                 style="width: calc(75px * 5); background-position-y: -186px"
             ></div>
-            <person-animait></person-animait>
+            <person-animait animat="angry" :jump="30"></person-animait>
         </div>
         <div class="tribune__row">
             <div class="tribune__plase" style="width: calc(75px * 4)"></div>
