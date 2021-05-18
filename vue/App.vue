@@ -2,7 +2,7 @@
     <div class="game-wrap">
         <tribune></tribune>
         <panel></panel>
-        <pop-up v-if="popUp"></pop-up>
+        <!-- <pop-up v-if="popUp"></pop-up> -->
     </div>
 </template>
 
@@ -38,8 +38,5 @@ export default {
     background: #222222;
     display: grid;
     grid-template-rows: 1fr 98px;
-}
-.lol{
-    margin: 0;
 }
 </style>
