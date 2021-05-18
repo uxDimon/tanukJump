@@ -6,10 +6,14 @@ export default new Vuex.Store({
 	state: {
 		popUp: true,
 		popUpItem: "personage",
-		score: 0,
-		combo: 0,
-		time: 0,
+		score: null,
+		combo: null,
+		time: null,
 		pause: false,
+		gameLogic: {
+			n: null,
+			intervalGame: null,
+		},
 		panel: {
 			heart: {
 				max: -300,
@@ -32,10 +36,10 @@ export default new Vuex.Store({
 		},
 		combo: state => state.combo,
 		gameTime: state => {
-			const pad2 = (num) => ("" + num).length < 2 ? "0".concat(num) : num;
+			const toInt = (num) => ("" + num).length < 2 ? "0".concat(num) : num;
 			const m = Math.floor(state.time / 60);
 			const s = state.time % 60;
-			return ("" + m).concat(':', pad2(s));
+			return ("" + m).concat(':', toInt(s));
 		},
 	},
 	mutations: {
@@ -43,24 +47,50 @@ export default new Vuex.Store({
 
 			state.score = 0;
 			state.combo = 0;
-			state.time = 5;
+			state.time = 120;
 
+			state.gameLogic.n = 2.5;
+			
 			state.panel.heart.list = [
 				{ point: 0, index: 1 },
 				{ point: 0, index: 2 },
 				{ point: 0, index: 3 }
 			];
 
-			setInterval(() => {
-				if(!state.pause) state.time--;
+			let time = 0;
+			let nTime = 0;
+			const interval = 10;
+
+			state.intervalGame = setInterval(() => {
+				if(!state.pause) {
+
+					time += interval;
+					nTime += interval;
+
+					if(nTime >= (state.gameLogic.n * 1000)) {
+						if(state.time > 20) {
+							state.gameLogic.n -= 0.005;
+						} else {
+							state.gameLogic.n = 2;
+						}
+						this.commit('animateHeartPlus');
+						nTime = 0;
+					}
+
+					if(time >= 1000) {
+						state.time--;
+						time = 0;
+					}
+				}
 				if(state.time === 0) {
 					this.commit('gameOver');
 				}
-			}, 1000);
+			}, interval);
 
 		},
 		gameOver(state) {
 			state.pause = true;
+			clearInterval(state.intervalGame);
 		},
 		comboPlus(state, options) {
 			state.combo++;
