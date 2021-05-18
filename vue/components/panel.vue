@@ -22,7 +22,7 @@
 		<div class="bot-panel__right">
 			<div class="bot-panel__info">
 				<div class="info-bar">
-					<div class="info-bar__name">Комбо</div>
+					<div class="info-bar__name">Комбо!</div>
 					<div class="info-bar__body" style="width: 72px">5</div>
 				</div>
 				<div class="info-bar">
