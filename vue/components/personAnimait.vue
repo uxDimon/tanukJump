@@ -12,7 +12,7 @@
     </div>
 </template>
 <script>
-import { mapGetters, mapMutations } from 'vuex';
+import { mapGetters, mapMutations } from "vuex";
 export default {
     data() {
         return {
@@ -23,9 +23,9 @@ export default {
                 animateJump: null,
             },
             type: {
-                angry: "-203px",
+                idle: "-203px",
                 happy: "-406px",
-                idle: "-609px",
+                angry: "-609px",
             },
             animate: () => {
                 if (this.iterator.animateJump)
@@ -39,7 +39,11 @@ export default {
                     }
                     this.styleAnim = {
                         backgroundPositionX: `-${200 * frame}px`,
-                        backgroundPositionY: this.type[this.mainСharacter ? this.animatPersonGeneral : this.animat],
+                        backgroundPositionY: this.type[
+                            this.mainСharacter
+                                ? this.animatPersonGeneral
+                                : this.animat
+                        ],
                         bottom: "",
                     };
                 }, this.stepAnim);
@@ -50,7 +54,6 @@ export default {
                     step = 0,
                     jump = 0;
                 this.iterator.animateJump = setInterval(() => {
-
                     if ([1, 3, 4].includes(frame)) {
                         ++step;
                     } else if ([6, 7, 8].includes(frame)) {
@@ -73,8 +76,8 @@ export default {
                         step = 0;
                         frame = 0;
                         jump = 0;
-                        
-                        if(!this.mainСharacter) {
+
+                        if (!this.mainСharacter) {
                             this.endJump();
                         } else {
                             this.setAnimatGeneral("idle");
@@ -91,7 +94,7 @@ export default {
             setAnimat: "setAnimat",
             setAnimatGeneral: "setAnimatGeneral",
             endJump: "endJump",
-        })
+        }),
     },
     props: {
         urlSprite: {
@@ -114,19 +117,25 @@ export default {
     },
     watch: {
         animat: function (val, oldVal) {
-            if(!this.mainСharacter) {
+            if (!this.mainСharacter) {
                 switch (val) {
-                    case "jump": this.animateJump(); break;
-                    default: this.animate();
+                    case "jump":
+                        this.animateJump();
+                        break;
+                    default:
+                        this.animate();
                 }
             }
         },
         animatPersonGeneral: function (val, oldVal) {
-            if(this.mainСharacter) {
-                console.log('Зашел');
+            if (this.mainСharacter) {
+                console.log("Зашел");
                 switch (val) {
-                    case "jump": this.animateJump(); break;
-                    default: this.animate();
+                    case "jump":
+                        this.animateJump();
+                        break;
+                    default:
+                        this.animate();
                 }
             }
         },

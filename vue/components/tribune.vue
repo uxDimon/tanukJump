@@ -83,7 +83,7 @@
                 @setAnimat="setAnimat"
             ></person-animait>
             <person-animait
-                :urlSprite="'url(' + imgUrl.bunny_4 + ')'"
+                :urlSprite="'url(' + imgUrl.char_1 + ')'"
                 :mainСharacter="true"
                 style="left: 440px"
                 @setAnimat="setAnimat"
@@ -189,6 +189,7 @@ import sushi_8 from "../sprite/person/8_sushi.png";
 import sushi_9 from "../sprite/person/9_sushi.png";
 import sushi_10 from "../sprite/person/10_sushi.png";
 import bunny_4 from "../sprite/person/4_bunny.png";
+import char_1 from "../sprite/person/char_1.png";
 
 export default {
     components: {
@@ -212,6 +213,7 @@ export default {
                 sushi_9,
                 sushi_10,
                 bunny_4,
+                char_1,
             },
         };
     },
@@ -233,9 +235,9 @@ export default {
         },
         ...mapMutations({
             setGreatPoint: "setGreatPoint",
-            // setAnimat: "setAnimat", 
+            // setAnimat: "setAnimat",
             // setJump: "setJump"
-        })
+        }),
     },
     created() {
         console.log(this.test);
