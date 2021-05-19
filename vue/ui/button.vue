@@ -1,5 +1,11 @@
 <template>
-    <button class="button-g" :disabled="disabled">{{ name }}</button>
+    <button
+        class="button-g"
+        :class="color === 'green' ? 'button-g_green' : ''"
+        :disabled="disabled"
+    >
+        {{ name }}
+    </button>
 </template>
 <script>
 export default {
@@ -11,6 +17,10 @@ export default {
         disabled: {
             type: Boolean,
             default: false,
+        },
+        color: {
+            type: String,
+            default: "red",
         },
     },
 };
@@ -43,6 +53,13 @@ $font-number: "Quantico", sans-serif;
     }
     &[disabled] {
         background: linear-gradient(180deg, #535353 0%, #8d8d8d 100%);
+    }
+
+    &.button-g_green {
+        background: linear-gradient(180deg, #01a355 0%, #49db94 100%);
+        &:active {
+            background: #01a355;
+        }
     }
 }
 </style>

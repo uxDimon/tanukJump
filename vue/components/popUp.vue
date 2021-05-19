@@ -8,14 +8,16 @@
     >
         <!-- <pop-up-personage class="pop-up__item"></pop-up-personage> -->
         <!-- <pop-up-message class="pop-up__item"></pop-up-message> -->
-        <!-- <pop-up-timer class="pop-up__item"></pop-up-timer> -->
-        <component :is="popStep" class="pop-up__item"></component>
+        <!-- <pop-up-failure class="pop-up__item"></pop-up-failure> -->
+        <pop-up-failure class="pop-up__item"></pop-up-failure>
+        <!-- <component :is="popStep" class="pop-up__item"></component> -->
     </div>
 </template>
 <script>
 import popUpPersonage from "./popUpPersonage.vue";
 import popUpMessage from "./popUpMessage.vue";
 import popUpTimer from "./popUpTimer.vue";
+import popUpFailure from "./popUpFailure.vue";
 
 export default {
     data() {
@@ -25,6 +27,7 @@ export default {
         popUpPersonage,
         popUpMessage,
         popUpTimer,
+        popUpFailure,
     },
     computed: {
         popStep() {
@@ -42,6 +45,7 @@ export default {
     height: 100%;
     background: rgba(170, 170, 170, 0.3);
     backdrop-filter: blur(8px);
+    z-index: 10;
 }
 .pop-up__item {
     position: absolute;
