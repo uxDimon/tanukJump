@@ -14,6 +14,8 @@ export default new Vuex.Store({
 		gameLogic: {
 			animat: "idle",
 			jump: 10,
+			animatGeneral: "idle",
+			jumpGeneral: 10,
 			n: null,
 			intervalGame: null,
 			maxCombo: 5,
@@ -33,6 +35,10 @@ export default new Vuex.Store({
 		greatPoint: (state) => state.greatPoint,
 		animatPerson: (state) => state.gameLogic.animat,
 		jumpPerson: (state) => state.gameLogic.jump,
+
+		animatPersonGeneral: (state) => state.gameLogic.animatGeneral,
+		jumpPersonGeneral: (state) => state.gameLogic.jumpGeneral,
+
 		progressBar: (state) => {
 			return state.combo * 20;
 		},
@@ -58,6 +64,12 @@ export default new Vuex.Store({
 		jumpButton: (state) => state.jumpButtonClose,
 	},
 	mutations: {
+		setAnimatGeneral(state, animat) {
+			state.gameLogic.animatGeneral = animat;
+		},
+		setJumpGeneral(state, jump) {
+			state.gameLogic.jumpGeneral = jump;
+		},
 		setAnimat(state, animat) {
 			state.gameLogic.animat = animat;
 		},
@@ -65,6 +77,9 @@ export default new Vuex.Store({
 			state.gameLogic.jump = jump;
 		},
 		setGreatPoint(state) {
+			if(!state.greatPoint) {
+				this.commit('setAnimatGeneral', 'jump');
+			}
 			state.greatPoint = true;
 		},
 		addJump(state) {

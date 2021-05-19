@@ -83,7 +83,8 @@
                 @setAnimat="setAnimat"
             ></person-animait>
             <person-animait
-                :urlSprite="'url(' + imgUrl.sushi_2 + ')'"
+                :urlSprite="'url(' + imgUrl.bunny_4 + ')'"
+                :mainСharacter="true"
                 style="left: 440px"
                 @setAnimat="setAnimat"
             ></person-animait>
@@ -187,6 +188,7 @@ import sushi_7 from "../sprite/person/7_sushi.png";
 import sushi_8 from "../sprite/person/8_sushi.png";
 import sushi_9 from "../sprite/person/9_sushi.png";
 import sushi_10 from "../sprite/person/10_sushi.png";
+import bunny_4 from "../sprite/person/4_bunny.png";
 
 export default {
     components: {
@@ -209,6 +211,7 @@ export default {
                 sushi_8,
                 sushi_9,
                 sushi_10,
+                bunny_4,
             },
         };
     },

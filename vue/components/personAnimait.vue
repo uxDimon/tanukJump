@@ -39,7 +39,7 @@ export default {
                     }
                     this.styleAnim = {
                         backgroundPositionX: `-${200 * frame}px`,
-                        backgroundPositionY: this.type[this.animat],
+                        backgroundPositionY: this.type[this.mainСharacter ? this.animatPersonGeneral : this.animat],
                         bottom: "",
                     };
                 }, this.stepAnim);
@@ -73,15 +73,13 @@ export default {
                         step = 0;
                         frame = 0;
                         jump = 0;
-
-                        this.endJump();
                         
-                        // this.animate();
+                        if(!this.mainСharacter) {
+                            this.endJump();
+                        } else {
+                            this.setAnimatGeneral("idle");
+                        }
 
-                        //this.setAnimat("idle");
-                        // this.$emit("setAnimat", {
-                        //     animat: "idle",
-                        // });
                         clearInterval(this.iterator.animateJump);
                     }
                 }, this.stepAnim);
@@ -91,6 +89,7 @@ export default {
     methods: {
         ...mapMutations({
             setAnimat: "setAnimat",
+            setAnimatGeneral: "setAnimatGeneral",
             endJump: "endJump",
         })
     },
@@ -99,22 +98,36 @@ export default {
             type: String,
             default: "",
         },
+        mainСharacter: {
+            type: Boolean,
+            default: false,
+        },
     },
     computed: {
         ...mapGetters({
             animat: "animatPerson",
             jump: "jumpPerson",
             greatPoint: "greatPoint",
+            animatPersonGeneral: "animatPersonGeneral",
+            jumpPersonGeneral: "jumpPersonGeneral",
         }),
     },
     watch: {
         animat: function (val, oldVal) {
-            switch (val) {
-                case "jump":
-                    this.animateJump();
-                    break;
-                default:
-                    this.animate();
+            if(!this.mainСharacter) {
+                switch (val) {
+                    case "jump": this.animateJump(); break;
+                    default: this.animate();
+                }
+            }
+        },
+        animatPersonGeneral: function (val, oldVal) {
+            if(this.mainСharacter) {
+                console.log('Зашел');
+                switch (val) {
+                    case "jump": this.animateJump(); break;
+                    default: this.animate();
+                }
             }
         },
     },
