@@ -21,12 +21,12 @@
     </div>
 </template>
 <script>
+import { mapGetters } from "vuex";
 export default {
-    props: {
-        fillPprogres: {
-            type: Number,
-            default: 0,
-        },
+    computed: {
+        ...mapGetters({
+            fillPprogres: "progressBar",
+        }),
     },
 };
 </script>

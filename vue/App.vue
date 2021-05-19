@@ -3,7 +3,7 @@
         <tribune></tribune>
         <panel></panel>
         <!-- <pop-up v-if="popUp"></pop-up> -->
-        <progres :fillPprogres="33"></progres>
+        <progres></progres>
     </div>
 </template>
 

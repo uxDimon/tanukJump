@@ -245,10 +245,6 @@ export default {
 <style lang="scss">
 .panel-action-button {
     z-index: 1;
-    .button-g {
-        line-height: 0px;
-        text-transform: lowercase;
-    }
 }
 .tribune {
     width: 100%;

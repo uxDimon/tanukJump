@@ -11,7 +11,7 @@ export default {
         disabled: {
             type: Boolean,
             default: false,
-        }
+        },
     },
 };
 </script>
@@ -42,8 +42,7 @@ $font-number: "Quantico", sans-serif;
         background: #cf0706;
     }
     &[disabled] {
-        background: #2e2e2e0e;
-        color: grey;
+        background: linear-gradient(180deg, #535353 0%, #8d8d8d 100%);
     }
 }
 </style>

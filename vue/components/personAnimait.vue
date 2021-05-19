@@ -125,7 +125,6 @@ export default {
 </script>
 <style lang="scss">
 .person-animate__wrap {
-    // --background-sprite: url("../sprite/person/4_bunny.png");
     position: absolute;
     bottom: -30px;
     z-index: 1;
@@ -139,7 +138,6 @@ export default {
     width: inherit;
     height: inherit;
     background-image: url("../sprite/person/4_bunny.png");
-    // background-image: var(--background-sprite);
     background-size: 800px;
     background-repeat: no-repeat;
 }
