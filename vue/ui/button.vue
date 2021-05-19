@@ -1,5 +1,5 @@
 <template>
-    <button class="button-g">{{ name }}</button>
+    <button class="button-g" :disabled="disabled">{{ name }}</button>
 </template>
 <script>
 export default {
@@ -8,6 +8,10 @@ export default {
             type: String,
             default: "Выбрать",
         },
+        disabled: {
+            type: Boolean,
+            default: false,
+        }
     },
 };
 </script>
@@ -36,6 +40,10 @@ $font-number: "Quantico", sans-serif;
 
     &:active {
         background: #cf0706;
+    }
+    &[disabled] {
+        background: #2e2e2e0e;
+        color: grey;
     }
 }
 </style>

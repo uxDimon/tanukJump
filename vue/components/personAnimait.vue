@@ -12,6 +12,7 @@
     </div>
 </template>
 <script>
+import { mapGetters, mapMutations } from 'vuex';
 export default {
     data() {
         return {
@@ -49,6 +50,7 @@ export default {
                     step = 0,
                     jump = 0;
                 this.iterator.animateJump = setInterval(() => {
+
                     if ([1, 3, 4].includes(frame)) {
                         ++step;
                     } else if ([6, 7, 8].includes(frame)) {
@@ -71,28 +73,39 @@ export default {
                         step = 0;
                         frame = 0;
                         jump = 0;
-                        this.$emit("setAnimat", {
-                            animat: "idle",
-                        });
+
+                        this.endJump();
+                        
+                        // this.animate();
+
+                        //this.setAnimat("idle");
+                        // this.$emit("setAnimat", {
+                        //     animat: "idle",
+                        // });
                         clearInterval(this.iterator.animateJump);
                     }
                 }, this.stepAnim);
             },
         };
     },
+    methods: {
+        ...mapMutations({
+            setAnimat: "setAnimat",
+            endJump: "endJump",
+        })
+    },
     props: {
-        animat: {
-            type: String,
-            default: "idle",
-        },
-        jump: {
-            type: Number,
-            default: 10,
-        },
         urlSprite: {
             type: String,
             default: "",
         },
+    },
+    computed: {
+        ...mapGetters({
+            animat: "animatPerson",
+            jump: "jumpPerson",
+            greatPoint: "greatPoint",
+        }),
     },
     watch: {
         animat: function (val, oldVal) {

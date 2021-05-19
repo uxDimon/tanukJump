@@ -11,29 +11,21 @@
                 style="width: calc(75px * 5); background-position-y: -186px"
             ></div>
             <person-animait
-                :animat="animat"
-                :jump="jump"
                 :urlSprite="'url(' + imgUrl.sushi_8 + ')'"
                 style="left: 40px"
                 @setAnimat="setAnimat"
             ></person-animait>
             <person-animait
-                :animat="animat"
-                :jump="jump"
                 :urlSprite="'url(' + imgUrl.sushi_9 + ')'"
                 style="left: 240px"
                 @setAnimat="setAnimat"
             ></person-animait>
             <person-animait
-                :animat="animat"
-                :jump="jump"
                 :urlSprite="'url(' + imgUrl.sushi_10 + ')'"
                 style="left: 440px"
                 @setAnimat="setAnimat"
             ></person-animait>
             <person-animait
-                :animat="animat"
-                :jump="jump"
                 :urlSprite="'url(' + imgUrl.sushi_0 + ')'"
                 style="left: 640px"
                 @setAnimat="setAnimat"
@@ -50,29 +42,21 @@
                 style="width: calc(75px * 5); background-position-y: -186px"
             ></div>
             <person-animait
-                :animat="animat"
-                :jump="jump"
                 :urlSprite="'url(' + imgUrl.sushi_4 + ')'"
                 style="left: 40px"
                 @setAnimat="setAnimat"
             ></person-animait>
             <person-animait
-                :animat="animat"
-                :jump="jump"
                 :urlSprite="'url(' + imgUrl.sushi_5 + ')'"
                 style="left: 240px"
                 @setAnimat="setAnimat"
             ></person-animait>
             <person-animait
-                :animat="animat"
-                :jump="jump"
                 :urlSprite="'url(' + imgUrl.sushi_6 + ')'"
                 style="left: 440px"
                 @setAnimat="setAnimat"
             ></person-animait>
             <person-animait
-                :animat="animat"
-                :jump="jump"
                 :urlSprite="'url(' + imgUrl.sushi_7 + ')'"
                 style="left: 640px"
                 @setAnimat="setAnimat"
@@ -89,29 +73,21 @@
                 style="width: calc(75px * 5); background-position-y: -186px"
             ></div>
             <person-animait
-                :animat="animat"
-                :jump="jump"
                 :urlSprite="'url(' + imgUrl.sushi_0 + ')'"
                 style="left: 40px"
                 @setAnimat="setAnimat"
             ></person-animait>
             <person-animait
-                :animat="animat"
-                :jump="jump"
                 :urlSprite="'url(' + imgUrl.sushi_1 + ')'"
                 style="left: 240px"
                 @setAnimat="setAnimat"
             ></person-animait>
             <person-animait
-                :animat="animat"
-                :jump="jump"
                 :urlSprite="'url(' + imgUrl.sushi_2 + ')'"
                 style="left: 440px"
                 @setAnimat="setAnimat"
             ></person-animait>
             <person-animait
-                :animat="animat"
-                :jump="jump"
                 :urlSprite="'url(' + imgUrl.sushi_3 + ')'"
                 style="left: 640px"
                 @setAnimat="setAnimat"
@@ -128,29 +104,21 @@
                 style="width: calc(75px * 4); background-position-y: -186px"
             ></div>
             <person-animait
-                :animat="animat"
-                :jump="jump"
                 :urlSprite="'url(' + imgUrl.sushi_8 + ')'"
                 style="left: 40px"
                 @setAnimat="setAnimat"
             ></person-animait>
             <person-animait
-                :animat="animat"
-                :jump="jump"
                 :urlSprite="'url(' + imgUrl.sushi_9 + ')'"
                 style="left: 240px"
                 @setAnimat="setAnimat"
             ></person-animait>
             <person-animait
-                :animat="animat"
-                :jump="jump"
                 :urlSprite="'url(' + imgUrl.sushi_10 + ')'"
                 style="left: 440px"
                 @setAnimat="setAnimat"
             ></person-animait>
             <person-animait
-                :animat="animat"
-                :jump="jump"
                 :urlSprite="'url(' + imgUrl.sushi_0 + ')'"
                 style="left: 640px"
                 @setAnimat="setAnimat"
@@ -167,29 +135,21 @@
                 style="width: calc(75px * 4); background-position-y: -186px"
             ></div>
             <person-animait
-                :animat="animat"
-                :jump="jump"
                 :urlSprite="'url(' + imgUrl.sushi_4 + ')'"
                 style="left: 40px"
                 @setAnimat="setAnimat"
             ></person-animait>
             <person-animait
-                :animat="animat"
-                :jump="jump"
                 :urlSprite="'url(' + imgUrl.sushi_5 + ')'"
                 style="left: 240px"
                 @setAnimat="setAnimat"
             ></person-animait>
             <person-animait
-                :animat="animat"
-                :jump="jump"
                 :urlSprite="'url(' + imgUrl.sushi_6 + ')'"
                 style="left: 440px"
                 @setAnimat="setAnimat"
             ></person-animait>
             <person-animait
-                :animat="animat"
-                :jump="jump"
                 :urlSprite="'url(' + imgUrl.sushi_7 + ')'"
                 style="left: 640px"
                 @setAnimat="setAnimat"
@@ -206,12 +166,15 @@
                 style="width: calc(75px * 3); background-position-y: -186px"
             ></div>
         </div>
+        <div class="action-button panel-action-button" @click="setGreatPoint">
+            <button-g name="Прыгай" :disabled="jumpButtonClose"></button-g>
+        </div>
     </div>
 </template>
 <script>
 import personAnimait from "./personAnimait.vue";
-
-import { mapGetters } from "vuex";
+import buttonG from "../ui/button.vue";
+import { mapGetters, mapMutations } from "vuex";
 
 import sushi_0 from "../sprite/person/0_sushi.png";
 import sushi_1 from "../sprite/person/1_sushi.png";
@@ -228,6 +191,7 @@ import sushi_10 from "../sprite/person/10_sushi.png";
 export default {
     components: {
         personAnimait,
+        buttonG,
     },
     data() {
         return {
@@ -248,21 +212,27 @@ export default {
             },
         };
     },
-    watch: {
-        jumpStore: function (val) {
-            this.animat = "jump";
-        },
-    },
+    // watch: {
+    //     jumpStore: function (val) {
+    //         this.setAnimat("jump");
+    //     },
+    // },
     computed: {
         tribuneRow() {},
         ...mapGetters({
-            jumpStore: "jump",
+            //jumpStore: "jump",
+            jumpButtonClose: "jumpButton",
         }),
     },
     methods: {
         setAnimat(data) {
             this.animat = data.animat;
         },
+        ...mapMutations({
+            setGreatPoint: "setGreatPoint",
+            // setAnimat: "setAnimat", 
+            // setJump: "setJump"
+        })
     },
     created() {
         console.log(this.test);
@@ -273,6 +243,13 @@ export default {
 };
 </script>
 <style lang="scss">
+.panel-action-button {
+    z-index: 1;
+    .button-g {
+        line-height: 0px;
+        text-transform: lowercase;
+    }
+}
 .tribune {
     width: 100%;
     height: 100%;

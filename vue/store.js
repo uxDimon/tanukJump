@@ -10,10 +10,15 @@ export default new Vuex.Store({
 		combo: null,
 		time: null,
 		pause: false,
+		greatPoint: false,
 		gameLogic: {
+			animat: 'idle',
+			jump: 10,
 			n: null,
 			intervalGame: null,
+			maxCombo: 5
 		},
+		jumpButtonClose: true,
 		jump: 0,
 		panel: {
 			heart: {
@@ -25,6 +30,10 @@ export default new Vuex.Store({
 		},
 	},
 	getters: {
+		greatPoint: state => state.greatPoint,
+		animatPerson: (state) => state.gameLogic.animat,
+		jumpPerson: (state) => state.gameLogic.jump,
+
 		jump: (state) => state.jump,
 		popUp: (state) => state.popUp,
 		heartList: (state) => state.panel.heart.list,
@@ -43,14 +52,24 @@ export default new Vuex.Store({
 			const s = state.time % 60;
 			return ("" + m).concat(":", toInt(s));
 		},
+		jumpButton: state => state.jumpButtonClose,
 	},
 	mutations: {
+		setAnimat(state, animat) {
+			state.gameLogic.animat = animat;
+		},
+		setJump(state, jump) {
+			state.gameLogic.jump = jump;
+		},
+		setGreatPoint(state) {
+			state.greatPoint = true;
+		},
 		addJump(state) {
 			state.jump++;
 		},
 		startGame(state) {
 			state.score = 0;
-			state.combo = 0;
+			state.combo = 1;
 			state.time = 120;
 
 			state.gameLogic.n = 2.5;
@@ -69,14 +88,21 @@ export default new Vuex.Store({
 				if (!state.pause) {
 					time += interval;
 					nTime += interval;
-
-					if (nTime >= state.gameLogic.n * 1000) {
+					const n = state.gameLogic.n - ((state.combo - 1) * 0.1);
+					if (nTime >= n * 1000) {
+						let x = 1;
+						switch (state.combo) {
+							case 3: case 4: x = 2; break;
+							case 5: case 4: x = 3; break;
+						}
+						state.gameLogic.jump = 10 * x;
 						if (state.time > 20) {
 							state.gameLogic.n -= 0.005;
 						} else {
 							state.gameLogic.n = 2;
 						}
-						this.commit("addJump");
+						this.commit("setAnimat", 'jump');
+						this.commit("closeJumpButton", { status: false });
 						nTime = 0;
 					}
 
@@ -85,17 +111,41 @@ export default new Vuex.Store({
 						time = 0;
 					}
 				}
-				if (state.time === 0) {
+				if (
+					state.time === 0 || 
+					state.panel.heart.list.every(heart => heart.point !== 0)
+				) {
 					this.commit("gameOver");
 				}
 			}, interval);
+		},
+		endJump(state) {
+			this.commit("setAnimat", state.greatPoint ? "happy" : "angry");
+			this.commit("closeJumpButton", { status: true });
+			if(state.greatPoint) {
+				let number = 1 * state.combo;
+				if(state.combo === 5) {
+					number += 10;
+				}
+				this.commit("scorePlus", { number });
+				this.commit("comboPlus");
+				state.greatPoint = false;
+			} else {
+				this.commit("comboSet", { value: 1 });
+				this.commit("animateHeartMinus");
+			}
+		},
+		closeJumpButton(state, options) {
+			state.jumpButtonClose = options.status;
 		},
 		gameOver(state) {
 			state.pause = true;
 			clearInterval(state.intervalGame);
 		},
 		comboPlus(state, options) {
-			state.combo++;
+			if(state.gameLogic.maxCombo >= (state.combo + 1)) {
+				state.combo++;
+			}
 		},
 		comboSet(state, options) {
 			state.combo = options.value;
