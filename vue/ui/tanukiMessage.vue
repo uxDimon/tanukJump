@@ -9,7 +9,25 @@
             ></div>
         </div>
         <div class="tanuki-message__name">Тануки-сан</div>
-        <div class="tanuki-message__message" v-html="message"></div>
+        <div
+            class="tanuki-message__message"
+            v-if="!score.points"
+            v-html="message"
+        ></div>
+        <div class="tanuki-message__score-wrap" v-if="score.points">
+            <div class="tanuki-message__score">
+                <div class="tanuki-message__score-number">
+                    {{ score.combo }}
+                </div>
+                <div class="tanuki-message__score-name">Комбо</div>
+            </div>
+            <div class="tanuki-message__score">
+                <div class="tanuki-message__score-number">
+                    {{ score.points }}
+                </div>
+                <div class="tanuki-message__score-name">Баллы</div>
+            </div>
+        </div>
     </div>
 </template>
 <script>
@@ -22,6 +40,13 @@ export default {
         face: {
             type: Number,
             default: 1,
+        },
+        score: {
+            type: Object,
+            default: {
+                combo: false,
+                points: false,
+            },
         },
     },
 };
@@ -92,5 +117,59 @@ $font-number: "Quantico", sans-serif;
     line-height: 100%;
     text-align: center;
     color: #ffffff;
+}
+
+.tanuki-message__score-wrap {
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: 10px;
+    justify-content: center;
+    margin-left: 40px;
+
+    &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 165px;
+        left: 200px;
+        width: 100px;
+        height: 60px;
+        background: #181836;
+        z-index: 1;
+    }
+}
+
+.tanuki-message__score {
+    position: relative;
+    z-index: 2;
+    padding: 40px 20px 20px;
+    background: linear-gradient(180deg, #181836 0%, #323251 100%);
+    box-shadow: 0px 10px 0px #181836;
+    border-radius: 10px;
+    width: 185px;
+    height: 135px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.tanuki-message__score-number,
+.tanuki-message__score-name {
+    font-family: $font-primary;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 100%;
+    text-align: center;
+    color: #ffffff;
+}
+
+.tanuki-message__score-number {
+    font-size: 48px;
+    margin: 14px 0 8px;
+}
+
+.tanuki-message__score-name {
+    font-size: 20px;
 }
 </style>

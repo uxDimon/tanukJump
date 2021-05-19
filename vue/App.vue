@@ -2,7 +2,7 @@
     <div class="game-wrap">
         <tribune></tribune>
         <panel></panel>
-        <!-- <pop-up v-if="popUp"></pop-up> -->
+        <pop-up v-if="popUp"></pop-up>
         <progres></progres>
     </div>
 </template>
