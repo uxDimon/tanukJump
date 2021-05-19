@@ -32,7 +32,46 @@
                 class="tribune__plase"
                 style="width: calc(75px * 5); background-position-y: -186px"
             ></div>
-            <person-animait animat="angry" :jump="30"></person-animait>
+            <person-animait
+                :animat="animat"
+                :jump="jump"
+                :style="{
+                    '--background-sprite':
+                        'url(' + require('../sprite/person/0_sushi.png') + ')',
+                }"
+                style="lefr: 40px"
+                @setAnimat="setAnimat"
+            ></person-animait>
+            <person-animait
+                :animat="animat"
+                :jump="jump"
+                :style="{
+                    '--background-sprite':
+                        'url(' + require('../sprite/person/1_sushi.png') + ')',
+                }"
+                style="lefr: 240px"
+                @setAnimat="setAnimat"
+            ></person-animait>
+            <person-animait
+                :animat="animat"
+                :jump="jump"
+                :style="{
+                    '--background-sprite':
+                        'url(' + require('../sprite/person/2_sushi.png') + ')',
+                }"
+                style="lefr: 440px"
+                @setAnimat="setAnimat"
+            ></person-animait>
+            <person-animait
+                :animat="animat"
+                :jump="jump"
+                :style="{
+                    '--background-sprite':
+                        'url(' + require('../sprite/person/3_sushi.png') + ')',
+                }"
+                style="lefr: 640px"
+                @setAnimat="setAnimat"
+            ></person-animait>
         </div>
         <div class="tribune__row">
             <div class="tribune__plase" style="width: calc(75px * 4)"></div>
@@ -72,18 +111,33 @@
 <script>
 import personAnimait from "./personAnimait.vue";
 
+import { mapGetters } from "vuex";
+
 export default {
     components: {
         personAnimait,
     },
     data() {
         return {
-            w: "1",
-            h: "2",
+            animat: "happy",
+            jump: 22,
         };
+    },
+    watch: {
+        jumpStore: function (val) {
+            this.animat = "jump";
+        },
     },
     computed: {
         tribuneRow() {},
+        ...mapGetters({
+            jumpStore: "jump",
+        }),
+    },
+    methods: {
+        setAnimat(data) {
+            this.animat = data.animat;
+        },
     },
     mounted() {
         // console.log(this.$refs.tribuneEl);

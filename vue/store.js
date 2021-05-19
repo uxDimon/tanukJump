@@ -76,7 +76,7 @@ export default new Vuex.Store({
 						} else {
 							state.gameLogic.n = 2;
 						}
-						this.commit("animateHeartPlus");
+						this.commit("addJump");
 						nTime = 0;
 					}
 

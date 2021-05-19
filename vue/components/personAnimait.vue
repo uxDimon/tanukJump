@@ -4,38 +4,43 @@
     </div>
 </template>
 <script>
-import { mapGetters, mapMutations } from "vuex";
 export default {
     data() {
         return {
             styleAnim: {},
-            stepAnim: 150,
-            tupe: {
+            stepAnim: 120,
+            iterator: {
+                animate: null,
+                animateJump: null,
+            },
+            type: {
                 angry: "-203px",
                 happy: "-406px",
                 idle: "-609px",
             },
             animate: () => {
+                if (this.iterator.animateJump)
+                    clearInterval(this.iterator.animateJump);
                 let frame = 0;
-                const animFrame = setInterval(() => {
+                this.iterator.animate = setInterval(() => {
                     if (frame < 2) {
                         ++frame;
                     } else {
                         frame = 0;
-                        // clearInterval(animFrame);
                     }
                     this.styleAnim = {
                         backgroundPositionX: `-${200 * frame}px`,
-                        backgroundPositionY: this.tupe[this.animat],
+                        backgroundPositionY: this.type[this.animat],
                         bottom: "",
                     };
                 }, this.stepAnim);
             },
             animateJump: () => {
+                if (this.iterator.animate) clearInterval(this.iterator.animate);
                 let frame = 0,
                     step = 0,
                     jump = 0;
-                const animFrame = setInterval(() => {
+                this.iterator.animateJump = setInterval(() => {
                     if ([1, 3, 4].includes(frame)) {
                         ++step;
                     } else if ([6, 7, 8].includes(frame)) {
@@ -58,34 +63,16 @@ export default {
                         step = 0;
                         frame = 0;
                         jump = 0;
-
-                        clearInterval(animFrame);
-                        this.animate();
+                        this.$emit("setAnimat", {
+                            animat: "idle",
+                        });
+                        clearInterval(this.iterator.animateJump);
                     }
                 }, this.stepAnim);
             },
         };
     },
-    watch: {
-        jumpStore: function name(val) {
-            // this.animateJump();
-        },
-    },
-    computed: {
-        ...mapGetters({
-            jumpStore: "jump",
-        }),
-    },
-    methods: {
-        ...mapMutations({
-            addJump: "addJump",
-        }),
-    },
     props: {
-        sprite: {
-            type: String,
-            default: "4_bunny.png",
-        },
         animat: {
             type: String,
             default: "idle",
@@ -95,17 +82,25 @@ export default {
             default: 10,
         },
     },
-    created() {
-        // this.animate();
-        this.animateJump();
+    watch: {
+        animat: function (val, oldVal) {
+            switch (val) {
+                case "jump":
+                    this.animateJump();
+                    break;
+                default:
+                    this.animate();
+            }
+        },
     },
-    updated() {
-        // this.animateJump();
+    created() {
+        this.animate();
     },
 };
 </script>
 <style lang="scss">
 .person-animate__wrap {
+    --background-sprite: url("../sprite/person/4_bunny.png");
     position: absolute;
     bottom: -30px;
     z-index: 1;
@@ -118,7 +113,7 @@ export default {
     bottom: 0;
     width: inherit;
     height: inherit;
-    background-image: url("../sprite/person/4_bunny.png");
+    background-image: var(--background-sprite);
     background-size: 800px;
     background-repeat: no-repeat;
 }
