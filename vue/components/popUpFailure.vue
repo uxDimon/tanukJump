@@ -5,7 +5,7 @@
             message="Ты набрал мало очков! Хочешь попробовать ещё раз?"
             :face="3"
         ></tanuki-message>
-        <div class="pop-up__botton-wrap_failure">
+        <div class="pop-up__botton-wrap_failure" @click="newGame">
             <button-g
                 :color="'green'"
                 class="pop-up__botton-failure"
@@ -18,6 +18,7 @@
 <script>
 import buttonG from "../ui/button.vue";
 import tanukiMessage from "../ui/tanukiMessage.vue";
+import { mapMutations } from "vuex";
 
 export default {
     components: {
@@ -25,8 +26,12 @@ export default {
         tanukiMessage,
     },
     methods: {
-        next() {
-            this.$store.commit("nextStape", "timer");
+        ...mapMutations({
+            startGame: "startGame",
+        }),
+        newGame() {
+            this.startGame();
+            this.$store.commit("toglePopUp");
         },
     },
 };

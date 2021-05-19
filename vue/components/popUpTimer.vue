@@ -4,6 +4,8 @@
     </div>
 </template>
 <script>
+import { mapMutations } from "vuex";
+
 export default {
     data() {
         return {
@@ -16,12 +18,18 @@ export default {
             default: 3,
         },
     },
+    methods: {
+        ...mapMutations({
+            startGame: "startGame",
+        }),
+    },
     created() {
         const interval = setInterval(() => {
             if (this.timer > 1) {
                 --this.timer;
             } else {
-                this.$store.commit("toglePopUp", "timer");
+                this.$store.commit("toglePopUp");
+                this.startGame();
                 clearInterval(interval);
             }
         }, 1000);

@@ -77,8 +77,8 @@ export default new Vuex.Store({
 			state.gameLogic.jump = jump;
 		},
 		setGreatPoint(state) {
-			if(!state.greatPoint) {
-				this.commit('setAnimatGeneral', 'jump');
+			if (!state.greatPoint) {
+				this.commit("setAnimatGeneral", "jump");
 			}
 			state.greatPoint = true;
 		},
@@ -86,12 +86,14 @@ export default new Vuex.Store({
 			state.jump++;
 		},
 		startGame(state) {
+			console.log("startGame");
+
 			state.score = 0;
 			state.combo = 1;
 			state.time = 120;
 
 			state.gameLogic.n = 2.5;
-
+			state.pause = false;
 			state.panel.heart.list = [
 				{ point: 0, index: 1 },
 				{ point: 0, index: 2 },
@@ -162,6 +164,13 @@ export default new Vuex.Store({
 		gameOver(state) {
 			state.pause = true;
 			clearInterval(state.intervalGame);
+
+			this.commit("toglePopUp", true);
+			// if (state.score >= 51 && state.score <= 200) {
+			// } else if (state.score >= 201) {
+			// } else {
+			// }
+			this.commit("nextStape", "failure");
 		},
 		comboPlus(state, options) {
 			if (state.gameLogic.maxCombo >= state.combo + 1) {

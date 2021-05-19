@@ -27,7 +27,7 @@ export default {
         }),
     },
     created() {
-        this.startGame();
+        // this.startGame();
     },
     data() {
         return {
