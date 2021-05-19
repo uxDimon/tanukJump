@@ -3,6 +3,7 @@
         <tribune></tribune>
         <panel></panel>
         <!-- <pop-up v-if="popUp"></pop-up> -->
+        <progres :fillPprogres="33"></progres>
     </div>
 </template>
 
@@ -10,19 +11,21 @@
 import panel from "./components/panel.vue";
 import tribune from "./components/tribune.vue";
 import popUp from "./components/popUp.vue";
-import { mapGetters, mapMutations } from 'vuex';
+import progres from "./ui/progres.vue";
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
     components: {
         panel,
         tribune,
         popUp,
+        progres,
     },
     methods: {
-		...mapMutations({
-			startGame: "startGame"
-		}),
-	},
+        ...mapMutations({
+            startGame: "startGame",
+        }),
+    },
     created() {
         this.startGame();
     },
@@ -33,7 +36,7 @@ export default {
     },
     computed: {
         ...mapGetters({
-            popUp: 'popUp',
+            popUp: "popUp",
         }),
     },
 };
