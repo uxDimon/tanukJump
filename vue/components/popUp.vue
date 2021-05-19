@@ -6,11 +6,9 @@
                 popStep === 'pop-up-personage' ? 'rgba(24, 24, 54, 0.6)' : '',
         }"
     >
-        <!-- <pop-up-personage class="pop-up__item"></pop-up-personage> -->
-        <!-- <pop-up-message class="pop-up__item"></pop-up-message> -->
         <!-- <pop-up-failure class="pop-up__item"></pop-up-failure> -->
-        <pop-up-failure class="pop-up__item"></pop-up-failure>
-        <!-- <component :is="popStep" class="pop-up__item"></component> -->
+        <!-- <pop-up-score class="pop-up__item"></pop-up-score> -->
+        <component :is="popStep" class="pop-up__item"></component>
     </div>
 </template>
 <script>
@@ -18,6 +16,7 @@ import popUpPersonage from "./popUpPersonage.vue";
 import popUpMessage from "./popUpMessage.vue";
 import popUpTimer from "./popUpTimer.vue";
 import popUpFailure from "./popUpFailure.vue";
+import popUpScore from "./popUpScore.vue";
 
 export default {
     data() {
@@ -28,6 +27,7 @@ export default {
         popUpMessage,
         popUpTimer,
         popUpFailure,
+        popUpScore,
     },
     computed: {
         popStep() {
