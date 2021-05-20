@@ -141,7 +141,7 @@ export default {
                                 "left: 88px; transform: scale(1.1);bottom: -32px",
                         },
                         {
-                            img: listImg["char_1.png"].default,
+                            img: null,
                             mainСharacter: true,
                             style:
                                 "left: 306px; transform: scale(1.1);bottom: -35px",
@@ -270,7 +270,13 @@ export default {
         tribuneRow() {},
         ...mapGetters({
             jumpButtonClose: "jumpButton",
+            char: "char",
         }),
+    },
+    watch: {
+        char: function (val) {
+            this.map[2].persons[1].img = listImg[val].default;
+        },
     },
     methods: {
         setAnimat(data) {

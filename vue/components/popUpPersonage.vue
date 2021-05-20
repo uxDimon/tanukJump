@@ -5,7 +5,7 @@
             <button
                 class="pop-up__personage"
                 value="personage1"
-                @click="choosePersonage"
+                @click="choosePersonage($event, 'char_1.png')"
                 :style="{
                     backgroundPositionX:
                         selectedPersonage === 'personage1' ? '-240px' : '',
@@ -14,7 +14,7 @@
             <button
                 class="pop-up__personage"
                 value="personage2"
-                @click="choosePersonage"
+                @click="choosePersonage($event, 'char_3.png')"
                 :style="{
                     backgroundImage:
                         'url(' + require('../sprite/character2.png') + ')',
@@ -25,7 +25,7 @@
             <button
                 class="pop-up__personage"
                 value="personage3"
-                @click="choosePersonage"
+                @click="choosePersonage($event, 'char_2.png')"
                 :style="{
                     backgroundImage:
                         'url(' + require('../sprite/character3.png') + ')',
@@ -41,7 +41,7 @@
 </template>
 <script>
 import buttonG from "../ui/button.vue";
-
+import { mapMutations, mapGetters } from "vuex";
 export default {
     components: {
         buttonG,
@@ -53,11 +53,23 @@ export default {
     },
     methods: {
         next() {
+            if (!this.char) {
+                this.setChar("char_1.png");
+            }
             this.$store.commit("nextStape", "message");
         },
-        choosePersonage(event) {
+        choosePersonage(event, img) {
+            this.setChar(img);
             this.selectedPersonage = event.currentTarget.value;
         },
+        ...mapMutations({
+            setChar: "setChar",
+        }),
+    },
+    computed: {
+        ...mapGetters({
+            char: "char",
+        }),
     },
 };
 </script>

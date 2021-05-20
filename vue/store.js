@@ -19,6 +19,7 @@ export default new Vuex.Store({
 			n: null,
 			intervalGame: null,
 			maxCombo: 5,
+			char: null,
 		},
 		jumpButtonClose: true,
 		jump: 0,
@@ -35,6 +36,7 @@ export default new Vuex.Store({
 		greatPoint: (state) => state.greatPoint,
 		animatPerson: (state) => state.gameLogic.animat,
 		jumpPerson: (state) => state.gameLogic.jump,
+		char: (state) => state.gameLogic.char,
 
 		animatPersonGeneral: (state) => state.gameLogic.animatGeneral,
 		jumpPersonGeneral: (state) => state.gameLogic.jumpGeneral,
@@ -64,6 +66,9 @@ export default new Vuex.Store({
 		jumpButton: (state) => state.jumpButtonClose,
 	},
 	mutations: {
+		setChar(state, img) {
+			state.gameLogic.char = img;
+		},
 		setAnimatGeneral(state, animat) {
 			state.gameLogic.animatGeneral = animat;
 		},
@@ -93,11 +98,12 @@ export default new Vuex.Store({
 			state.time = 120;
 
 			state.gameLogic.n = 2.5;
+
 			state.pause = false;
 			state.panel.heart.list = [
-				{ point: 0, index: 1 },
-				{ point: 0, index: 2 },
-				{ point: 0, index: 3 },
+				{ point: 0, index: 1, flicker: false },
+				{ point: 0, index: 2, flicker: false },
+				{ point: 0, index: 3, flicker: false },
 			];
 
 			let time = 0;
@@ -187,13 +193,19 @@ export default new Vuex.Store({
 			const reverse = Object.assign([], state.panel.heart.list);
 			for (const heart of reverse.reverse()) {
 				if (heart.point === 0) {
-					const minusInterval = setInterval(() => {
-						if (heart.point == state.panel.heart.max) {
-							clearInterval(minusInterval);
-							return false;
-						}
-						heart.point -= state.panel.heart.step;
-					}, 150);
+					if (heart.flicker) {
+						heart.flicker = false;
+						const minusInterval = setInterval(() => {
+							if (heart.point == state.panel.heart.max) {
+								clearInterval(minusInterval);
+								return false;
+							}
+							heart.point -= state.panel.heart.step;
+						}, 150);
+						break;
+					} else {
+						heart.flicker = true;
+					}
 					break;
 				}
 			}
