@@ -4,10 +4,11 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
 	state: {
-		popUp: false,
+		popUp: true,
 		popUpItem: "personage",
 		score: null,
 		combo: null,
+		comboScore: null,
 		time: null,
 		pause: false,
 		greatPoint: false,
@@ -37,7 +38,7 @@ export default new Vuex.Store({
 		animatPerson: (state) => state.gameLogic.animat,
 		jumpPerson: (state) => state.gameLogic.jump,
 		char: (state) => state.gameLogic.char,
-
+		comboScore: state => state.comboScore,
 		animatPersonGeneral: (state) => state.gameLogic.animatGeneral,
 		jumpPersonGeneral: (state) => state.gameLogic.jumpGeneral,
 
@@ -158,6 +159,7 @@ export default new Vuex.Store({
 				}
 				this.commit("scorePlus", { number });
 				this.commit("comboPlus");
+				
 				state.greatPoint = false;
 			} else {
 				this.commit("comboSet", { value: 1 });
@@ -173,14 +175,15 @@ export default new Vuex.Store({
 
 			this.commit("toglePopUp", true);
 			if (state.score >= 51 && state.score <= 200) {
-				this.commit("nextStape", "failure");
+				this.commit("nextStape", "score");
 			} else if (state.score >= 201) {
-				this.commit("nextStape", "failure");
+				this.commit("nextStape", "score");
 			} else {
 				this.commit("nextStape", "failure");
 			}
 		},
 		comboPlus(state, options) {
+			state.comboScore++;
 			if (state.gameLogic.maxCombo >= state.combo + 1) {
 				state.combo++;
 			}

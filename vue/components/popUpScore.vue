@@ -2,19 +2,26 @@
     <div class="pop-up__item_score">
         <tanuki-message
             class="pop-up__tanuki-score"
-            :score="{ combo: 31, points: 2543 }"
+            :score="{ combo: comboScore, points: score }"
             :face="2"
         ></tanuki-message>
     </div>
 </template>
 <script>
 import tanukiMessage from "../ui/tanukiMessage.vue";
-
+import { mapGetters } from 'vuex';
 export default {
     components: {
         tanukiMessage,
     },
+    computed: {
+        ...mapGetters({
+            score: 'score',
+            comboScore: 'comboScore',
+        }),
+    },
     methods: {
+
         next() {
             this.$store.commit("nextStape", "timer");
         },

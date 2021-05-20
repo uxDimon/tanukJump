@@ -45,7 +45,7 @@ export default {
     height: 100%;
     background: rgba(170, 170, 170, 0.3);
     backdrop-filter: blur(8px);
-    z-index: 10;
+    z-index: 30;
 }
 .pop-up__item {
     position: absolute;

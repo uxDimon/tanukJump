@@ -4,6 +4,7 @@
         :style="{
             backgroundImage: `url(${img[type]})`,
             animationDuration: animationDuration + 'ms',
+            transform: `scale(${scale})`,
         }"
         :class="active ? 'active' : ''"
     ></div>
@@ -12,6 +13,8 @@
 import ex1 from "../sprite/explosion_1.png";
 import ex2 from "../sprite/explosion_2.png";
 import ex3 from "../sprite/explosion_3.png";
+
+import { mapGetters } from 'vuex';
 
 export default {
     data() {
@@ -23,6 +26,7 @@ export default {
             },
             active: null,
             animationDuration: 800,
+            scale: 1
         };
     },
     props: {
@@ -30,14 +34,46 @@ export default {
             type: String,
             default: "ex2",
         },
-        onExplosion: {
-            type: Number,
-            default: null,
-        },
+    },
+    computed: {
+        ...mapGetters({
+            onExplosion: "comboScore",
+            combo: "combo",
+        })
     },
     watch: {
         onExplosion: function () {
-            this.active = this.onExplosion;
+            if(this.type == 'ex3') {
+                if(this.combo == 1) {
+                    this.scale = 0.4;
+                } else if (this.combo == 2) {
+                    this.scale = 0.6;
+                } else {
+                    this.scale = 1;
+                }
+                this.active = true;
+            }
+            if(this.type == 'ex1') {
+                if(this.combo > 1) {
+                    if(this.combo == 2) {
+                        this.scale = 0.5;
+                    } else {
+                        this.scale = 1;
+                    }
+                    this.active = true;
+                }
+            }
+            if(this.type == 'ex2') {
+                if(this.combo > 3) {
+                    if(this.combo == 4) {
+                        this.scale = 0.3;
+                    } else {
+                        this.scale = 1;
+                    }
+                    this.active = true;
+                }
+            }
+
             setTimeout(() => {
                 this.active = null;
             }, this.animationDuration);

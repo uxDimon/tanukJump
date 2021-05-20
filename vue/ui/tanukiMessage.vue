@@ -9,8 +9,8 @@
             ></div>
         </div>
         <div class="tanuki-message__name">Тануки-сан</div>
-        <div class="tanuki-message__message" v-html="message"></div>
-        <!-- <div class="tanuki-message__score-wrap" v-if="score.points">
+        
+        <div class="tanuki-message__score-wrap" v-if="score.points">
             <div class="tanuki-message__score">
                 <div class="tanuki-message__score-number">
                     {{ score.combo }}
@@ -23,7 +23,8 @@
                 </div>
                 <div class="tanuki-message__score-name">Баллы</div>
             </div>
-        </div> -->
+        </div>
+        <div class="tanuki-message__message" v-html="message" v-else></div>
     </div>
 </template>
 <script>
@@ -37,13 +38,13 @@ export default {
             type: Number,
             default: 1,
         },
-        // score: {
-        //     type: Object,
-        //     default: {
-        //         combo: false,
-        //         points: false,
-        //     },
-        // },
+        score: {
+            type: Object,
+            default: {
+                combo: false,
+                points: false,
+            },
+        },
     },
 };
 </script>

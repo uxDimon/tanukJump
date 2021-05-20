@@ -20,11 +20,64 @@
         <div class="action-button panel-action-button" @click="setGreatPoint">
             <button-g name="Прыгай!" :disabled="jumpButtonClose"></button-g>
         </div>
+
         <explosion
-            style="top: 100px"
-            :onExplosion="1545845"
+            style="top: -40px;left:-40px"
+            :type="'ex2'"
+        ></explosion>
+        <explosion
+            style="top: -50px;left: 200px"
             :type="'ex3'"
         ></explosion>
+        <explosion
+            style="top: -40px;left: 540px"
+            :type="'ex2'"
+        ></explosion>
+        <explosion
+            style="top: -40px;left: 690px"
+            :type="'ex2'"
+        ></explosion>
+
+        <explosion
+            style="top: 20px;left:280px"
+            :type="'ex2'"
+        ></explosion>
+        <explosion
+            style="top: 20px;left:695px"
+            :type="'ex1'"
+        ></explosion>
+
+        <explosion
+            style="top: 100px;left:160px"
+            :type="'ex2'"
+        ></explosion>
+        <explosion
+            style="top: 100px;left:530px"
+            :type="'ex3'"
+        ></explosion>
+
+        <explosion
+            style="top: 160px;left:50px"
+            :type="'ex3'"
+        ></explosion>
+        <explosion
+            style="top: 170px;left:470px"
+            :type="'ex2'"
+        ></explosion>
+
+        <explosion
+            style="top: 275px;left:135px"
+            :type="'ex1'"
+        ></explosion>
+        <explosion
+            style="top: 290px;left:355px"
+            :type="'ex3'"
+        ></explosion>
+        <explosion
+            style="top: 275px;left:570px"
+            :type="'ex1'"
+        ></explosion>
+
     </div>
 </template>
 <script>
