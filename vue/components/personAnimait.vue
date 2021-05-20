@@ -27,66 +27,6 @@ export default {
                 happy: "-406px",
                 angry: "-609px",
             },
-            animate: () => {
-                if (this.iterator.animateJump)
-                    clearInterval(this.iterator.animateJump);
-                let frame = 0;
-                this.iterator.animate = setInterval(() => {
-                    if (frame < 2) {
-                        ++frame;
-                    } else {
-                        frame = 0;
-                    }
-                    this.styleAnim = {
-                        backgroundPositionX: `-${200 * frame}px`,
-                        backgroundPositionY: this.type[
-                            this.mainСharacter
-                                ? this.animatPersonGeneral
-                                : this.animat
-                        ],
-                        bottom: "",
-                    };
-                }, this.stepAnim);
-            },
-            animateJump: () => {
-                if (this.iterator.animate) clearInterval(this.iterator.animate);
-                let frame = 0,
-                    step = 0,
-                    jump = 0;
-                this.iterator.animateJump = setInterval(() => {
-                    if ([1, 3, 4].includes(frame)) {
-                        ++step;
-                    } else if ([6, 7, 8].includes(frame)) {
-                        --jump;
-                    }
-
-                    if ([8, 9, 10].includes(frame)) {
-                        --step;
-                    } else if ([4, 5, 6].includes(frame)) {
-                        ++jump;
-                    }
-
-                    this.styleAnim = {
-                        backgroundPositionX: `-${200 * step}px`,
-                        backgroundPositionY: "",
-                        bottom: this.jump * jump + "px",
-                    };
-                    ++frame;
-                    if (frame == 11) {
-                        step = 0;
-                        frame = 0;
-                        jump = 0;
-
-                        if (!this.mainСharacter) {
-                            this.endJump();
-                        } else {
-                            this.setAnimatGeneral("idle");
-                        }
-
-                        clearInterval(this.iterator.animateJump);
-                    }
-                }, this.stepAnim);
-            },
         };
     },
     methods: {
@@ -95,6 +35,66 @@ export default {
             setAnimatGeneral: "setAnimatGeneral",
             endJump: "endJump",
         }),
+        animate() {
+            if (this.iterator.animateJump)
+                clearInterval(this.iterator.animateJump);
+            let frame = 0;
+            this.iterator.animate = setInterval(() => {
+                if (frame < 2) {
+                    ++frame;
+                } else {
+                    frame = 0;
+                }
+                this.styleAnim = {
+                    backgroundPositionX: `-${200 * frame}px`,
+                    backgroundPositionY: this.type[
+                        this.mainСharacter
+                            ? this.animatPersonGeneral
+                            : this.animat
+                    ],
+                    bottom: "",
+                };
+            }, this.stepAnim);
+        },
+        animateJump() {
+            if (this.iterator.animate) clearInterval(this.iterator.animate);
+            let frame = 0,
+                step = 0,
+                jump = 0;
+            this.iterator.animateJump = setInterval(() => {
+                if ([1, 3, 4].includes(frame)) {
+                    ++step;
+                } else if ([6, 7, 8].includes(frame)) {
+                    --jump;
+                }
+
+                if ([8, 9, 10].includes(frame)) {
+                    --step;
+                } else if ([4, 5, 6].includes(frame)) {
+                    ++jump;
+                }
+
+                this.styleAnim = {
+                    backgroundPositionX: `-${200 * step}px`,
+                    backgroundPositionY: "",
+                    bottom: this.jump * jump + "px",
+                };
+                ++frame;
+                if (frame == 11) {
+                    step = 0;
+                    frame = 0;
+                    jump = 0;
+
+                    if (!this.mainСharacter) {
+                        this.endJump();
+                    } else {
+                        this.setAnimatGeneral("idle");
+                    }
+
+                    clearInterval(this.iterator.animateJump);
+                }
+            }, this.stepAnim);
+        },
     },
     props: {
         urlSprite: {

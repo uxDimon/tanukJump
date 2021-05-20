@@ -20,10 +20,16 @@
         <div class="action-button panel-action-button" @click="setGreatPoint">
             <button-g name="Прыгай!" :disabled="jumpButtonClose"></button-g>
         </div>
+        <explosion
+            style="top: 100px"
+            :onExplosion="1545845"
+            :type="'ex3'"
+        ></explosion>
     </div>
 </template>
 <script>
 import personAnimait from "./personAnimait.vue";
+import explosion from "./explosion.vue";
 import buttonG from "../ui/button.vue";
 import { mapGetters, mapMutations } from "vuex";
 
@@ -38,6 +44,7 @@ for (const key in modules) {
 export default {
     components: {
         personAnimait,
+        explosion,
         buttonG,
     },
     data() {

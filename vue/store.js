@@ -4,7 +4,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
 	state: {
-		popUp: true,
+		popUp: false,
 		popUpItem: "personage",
 		score: null,
 		combo: null,
@@ -172,11 +172,13 @@ export default new Vuex.Store({
 			clearInterval(state.intervalGame);
 
 			this.commit("toglePopUp", true);
-			// if (state.score >= 51 && state.score <= 200) {
-			// } else if (state.score >= 201) {
-			// } else {
-			// }
-			this.commit("nextStape", "failure");
+			if (state.score >= 51 && state.score <= 200) {
+				this.commit("nextStape", "failure");
+			} else if (state.score >= 201) {
+				this.commit("nextStape", "failure");
+			} else {
+				this.commit("nextStape", "failure");
+			}
 		},
 		comboPlus(state, options) {
 			if (state.gameLogic.maxCombo >= state.combo + 1) {
