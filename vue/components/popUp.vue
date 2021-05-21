@@ -9,6 +9,10 @@
         <!-- <pop-up-failure class="pop-up__item"></pop-up-failure> -->
         <!-- <pop-up-score class="pop-up__item"></pop-up-score> -->
         <component :is="popStep" class="pop-up__item"></component>
+        <back-button
+            class="pop-up__back-buttom"
+            v-if="popStep == 'pop-up-score' || popStep == 'pop-up-failure'"
+        ></back-button>
     </div>
 </template>
 <script>
@@ -17,6 +21,8 @@ import popUpMessage from "./popUpMessage.vue";
 import popUpTimer from "./popUpTimer.vue";
 import popUpFailure from "./popUpFailure.vue";
 import popUpScore from "./popUpScore.vue";
+
+import backButton from "../ui/backButton.vue";
 
 export default {
     data() {
@@ -28,6 +34,7 @@ export default {
         popUpTimer,
         popUpFailure,
         popUpScore,
+        backButton,
     },
     computed: {
         popStep() {
@@ -52,5 +59,10 @@ export default {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+.pop-up__back-buttom {
+    position: absolute;
+    top: 16px;
+    left: 16px;
 }
 </style>
