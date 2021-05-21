@@ -52,7 +52,7 @@ export default new Vuex.Store({
 		score: (state) => {
 			let score = `${state.score}`;
 			const lenght = score.length;
-			for (let i = 0; i < 4 - lenght; i++) {
+			for (let i = 0; i < 3 - lenght; i++) {
 				score = "0" + score;
 			}
 			return score;

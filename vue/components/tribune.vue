@@ -26,7 +26,7 @@
         <explosion style="top: -40px; left: 540px" :type="'ex2'"></explosion>
         <explosion style="top: -40px; left: 690px" :type="'ex2'"></explosion>
 
-        <explosion style="top: 20px; left: 280px" :type="'ex2'"></explosion>
+        <!-- <explosion style="top: 20px; left: 280px" :type="'ex2'"></explosion> -->
         <explosion style="top: 20px; left: 695px" :type="'ex1'"></explosion>
 
         <explosion style="top: 100px; left: 160px" :type="'ex2'"></explosion>
