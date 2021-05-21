@@ -305,10 +305,7 @@ export default {
         ...mapMutations({
             setGreatPoint: "setGreatPoint",
         }),
-    },
-    created() {
-        console.log(this.test);
-    },
+    },},
 };
 </script>
 <style lang="scss">

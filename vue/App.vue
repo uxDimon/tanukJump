@@ -26,9 +26,6 @@ export default {
             startGame: "startGame",
         }),
     },
-    created() {
-        // this.startGame();
-    },
     data() {
         return {
             maessage: "хуита",
@@ -44,11 +41,25 @@ export default {
 
 <style lang="scss">
 .game-wrap {
-    position: relative;
+    position: absolute;
     width: 890px;
     height: 500px;
     background: #222222;
     display: grid;
     grid-template-rows: 1fr 98px;
+}
+
+.rotate-screen {
+    display: none;
+}
+
+@media screen and (orientation: portrait) and (max-width: 500px) {
+    .game-wrap {
+        display: none;
+    }
+
+    .rotate-screen {
+        display: flex;
+    }
 }
 </style>

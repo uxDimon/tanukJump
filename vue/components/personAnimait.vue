@@ -129,7 +129,6 @@ export default {
         },
         animatPersonGeneral: function (val, oldVal) {
             if (this.mainСharacter) {
-                console.log("Зашел");
                 switch (val) {
                     case "jump":
                         this.animateJump();

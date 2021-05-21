@@ -5,4 +5,8 @@ module.exports = {
 	build: {
 		outDir: "docs",
 	},
+	server: {
+		host: "192.168.1.100",
+		port: 3000,
+	},
 };

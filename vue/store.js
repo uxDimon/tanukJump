@@ -38,7 +38,7 @@ export default new Vuex.Store({
 		animatPerson: (state) => state.gameLogic.animat,
 		jumpPerson: (state) => state.gameLogic.jump,
 		char: (state) => state.gameLogic.char,
-		comboScore: state => state.comboScore,
+		comboScore: (state) => state.comboScore,
 		animatPersonGeneral: (state) => state.gameLogic.animatGeneral,
 		jumpPersonGeneral: (state) => state.gameLogic.jumpGeneral,
 
@@ -92,8 +92,6 @@ export default new Vuex.Store({
 			state.jump++;
 		},
 		startGame(state) {
-			console.log("startGame");
-
 			state.score = 0;
 			state.combo = 1;
 			state.time = 120;
@@ -159,7 +157,7 @@ export default new Vuex.Store({
 				}
 				this.commit("scorePlus", { number });
 				this.commit("comboPlus");
-				
+
 				state.greatPoint = false;
 			} else {
 				this.commit("comboSet", { value: 1 });
