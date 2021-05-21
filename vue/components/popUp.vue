@@ -12,6 +12,7 @@
         <back-button
             class="pop-up__back-buttom"
             v-if="popStep == 'pop-up-score' || popStep == 'pop-up-failure'"
+            :urlLinc="'/lk.html'"
         ></back-button>
     </div>
 </template>
