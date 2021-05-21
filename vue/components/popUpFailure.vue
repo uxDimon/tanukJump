@@ -5,13 +5,14 @@
             message="Ты набрал мало очков! Хочешь попробовать ещё раз?"
             :face="3"
         ></tanuki-message>
-        <div class="pop-up__botton-wrap_failure" @click="newGame">
+        <div class="pop-up__botton-wrap_failure">
             <button-g
                 :color="'green'"
                 class="pop-up__botton-failure"
                 name="Да!"
+                :event="'newGame'"
             ></button-g>
-            <button-g class="pop-up__botton-failure" name="Нет!"></button-g>
+            <button-g class="pop-up__botton-failure" name="Нет!" :event="'location'"></button-g>
         </div>
     </div>
 </template>
@@ -24,15 +25,6 @@ export default {
     components: {
         buttonG,
         tanukiMessage,
-    },
-    methods: {
-        ...mapMutations({
-            startGame: "startGame",
-        }),
-        newGame() {
-            this.startGame();
-            this.$store.commit("toglePopUp");
-        },
     },
 };
 </script>

@@ -170,14 +170,25 @@ export default new Vuex.Store({
 		gameOver(state) {
 			state.pause = true;
 			clearInterval(state.intervalGame);
-
+			let send = false;
 			this.commit("toglePopUp", true);
 			if (state.score >= 51 && state.score <= 200) {
+				send = true;
 				this.commit("nextStape", "score");
 			} else if (state.score >= 201) {
+				send = true;
 				this.commit("nextStape", "score");
 			} else {
 				this.commit("nextStape", "failure");
+			}
+			if(send) {
+				const formData = new FormData();
+				formData.append('score', state.score);
+				try {
+					fetch('/ajax/jump.php', { method: 'POST', body: formData });
+				} catch (error) {
+					console.error('Ошибка:', error);
+				}
 			}
 		},
 		comboPlus(state, options) {

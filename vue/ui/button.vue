@@ -3,11 +3,13 @@
         class="button-g"
         :class="color === 'green' ? 'button-g_green' : ''"
         :disabled="disabled"
+        @click="startEvent"
     >
         {{ name }}
     </button>
 </template>
 <script>
+import { mapMutations } from "vuex";
 export default {
     props: {
         name: {
@@ -21,6 +23,29 @@ export default {
         color: {
             type: String,
             default: "red",
+        },
+        event: {
+            type: String,
+            default: "empty",
+        },
+    },
+    methods: {
+        ...mapMutations({
+            startGame: "startGame",
+        }),
+        startEvent() {
+            switch(this.event) {
+                case "newGame":
+                    this.newGame();
+                break;
+                case "location":
+                    window.location.href = '/lk.html';
+                break;    
+            }
+        },
+        newGame() {
+            this.startGame();
+            this.$store.commit("toglePopUp");
         },
     },
 };
