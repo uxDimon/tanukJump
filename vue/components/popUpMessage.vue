@@ -2,7 +2,7 @@
     <div class="pop-up__item_message">
         <tanuki-message
             class="pop-up__tanuki-message"
-            message="Надеюсь, ты умеешь прыгать достаточно высоко, Андрей! <br/> A главное - вовремя!"
+            :message="`Надеюсь, ты умеешь прыгать достаточно высоко, ${userName}! <br/> A главное - вовремя!`"
             :face="1"
         ></tanuki-message>
         <div @click="next" class="action-button">
@@ -14,16 +14,32 @@
 import buttonG from "../ui/button.vue";
 import tanukiMessage from "../ui/tanukiMessage.vue";
 
+import { mapMutations, mapGetters } from 'vuex';
+
 export default {
     components: {
         buttonG,
         tanukiMessage,
     },
+    computed: {
+        ...mapGetters({
+            userName: "userName",
+        })
+    },
     methods: {
+        ...mapMutations({
+            setUserName: "setUserName"
+        }),
         next() {
             this.$store.commit("nextStape", "timer");
         },
     },
+    created() {
+        const userName = document.querySelector('[data-user-name]');
+        if(userName) {
+            this.setUserName(userName.dataset.userName);
+        }
+    }
 };
 </script>
 <style lang="scss">

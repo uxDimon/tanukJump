@@ -21,6 +21,7 @@ export default new Vuex.Store({
 			intervalGame: null,
 			maxCombo: 5,
 			char: null,
+			userName: null,
 		},
 		jumpButtonClose: true,
 		jump: 0,
@@ -41,7 +42,7 @@ export default new Vuex.Store({
 		comboScore: (state) => state.comboScore,
 		animatPersonGeneral: (state) => state.gameLogic.animatGeneral,
 		jumpPersonGeneral: (state) => state.gameLogic.jumpGeneral,
-
+		userName: state => state.gameLogic.userName,
 		progressBar: (state) => {
 			return state.combo * 20;
 		},
@@ -67,6 +68,9 @@ export default new Vuex.Store({
 		jumpButton: (state) => state.jumpButtonClose,
 	},
 	mutations: {
+		setUserName(state, name) {
+			state.gameLogic.userName = name;
+		}, 
 		setChar(state, img) {
 			state.gameLogic.char = img;
 		},
