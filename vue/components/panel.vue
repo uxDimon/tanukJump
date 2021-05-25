@@ -30,7 +30,7 @@
                 <div class="info-bar">
                     <div class="info-bar__name" @click="comboPlus">Комбо!</div>
                     <div class="info-bar__body" style="width: 72px">
-                        {{ combo }}
+                        {{"×"}}{{combo}}
                     </div>
                 </div>
                 <div class="info-bar">
