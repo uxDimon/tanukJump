@@ -26,39 +26,41 @@ export default {
         progres,
     },
     mounted() {},
+    updated() {
+        const mw = document.querySelector('.master-wrap');
+        const gw = document.querySelector('.game-wrap');
+        if(mw) {
+            if(this.full) {
+                let scale = 1;  
+                if(mw.clientWidth > (gw.clientWidth * scale)) {
+                    while(true) {
+                        if(mw.clientWidth > (gw.clientWidth * scale) && mw.clientHeight > (gw.clientHeight * scale)) {
+                                scale += 0.01;
+                                gw.style.transform = `scale(${scale})`;
+                        } else break;
+                    } 
+                }
+                if(mw.clientWidth < (gw.clientWidth * scale)) {
+                    while(true) {
+                        if(mw.clientHeight < (gw.clientHeight * scale)) {
+                            scale -= 0.01;
+                            gw.style.transform = `scale(${scale})`;
+                        } else break;
+                    } 
+                }
+                mw.classList.add('master-wrap_fixed');
+            } else {
+                gw.style.transform = `scale(1)`;
+                mw.classList.remove('master-wrap_fixed');
+            }
+        }
+    },
     methods: {
         ...mapMutations({
             startGame: "startGame",
         }),
         fullscreen() {
             this.full = !this.full;
-            const mw = document.querySelector('.master-wrap');
-            const gw = document.querySelector('.game-wrap');
-            if(mw) {
-                if(this.full) {
-                    let scale = 1;  
-                    if(mw.clientWidth > (gw.clientWidth * scale)) {
-                        while(true) {
-                            if(mw.clientWidth > (gw.clientWidth * scale) && mw.clientHeight > (gw.clientHeight * scale)) {
-                                    scale += 0.01;
-                                    gw.style.transform = `scale(${scale})`;
-                            } else break;
-                        } 
-                    }
-                    if(mw.clientWidth < (gw.clientWidth * scale)) {
-                        while(true) {
-                            if(mw.clientHeight < (gw.clientHeight * scale)) {
-                                scale -= 0.01;
-                                gw.style.transform = `scale(${scale})`;
-                            } else break;
-                        } 
-                    }
-                    mw.classList.add('master-wrap_fixed');
-                } else {
-                    gw.style.transform = `scale(1)`;
-                    mw.classList.remove('master-wrap_fixed');
-                }
-            }
         },
     },
     data() {
@@ -108,6 +110,10 @@ export default {
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 999999999;
+    background-color: #181836;
+    padding: 0;
+    margin: 0;
 }
 .game-wrap {
     position: absolute;
