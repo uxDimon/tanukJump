@@ -53,6 +53,15 @@ export default {
     },
     methods: {
         next() {
+
+            // const el = document.querySelector('.master-wrap');
+            // if (el.webkitRequestFullScreen) {
+            //     el.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+            // } else {
+            //     el.mozRequestFullScreen();
+            // }
+
+
             if (!this.char) {
                 this.setChar("char_1.png");
             }
