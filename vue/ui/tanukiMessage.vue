@@ -8,7 +8,7 @@
                 }"
             ></div>
         </div>
-        <div class="tanuki-message__name">Тануки-сан</div>
+        <div class="tanuki-message__name">Тануки</div>
         
         <div class="tanuki-message__score-wrap" v-if="score.points">
             <div class="tanuki-message__score">
