@@ -66,9 +66,11 @@ export default {
         if(mw) {
             if(this.full) {
                 mw.classList.add('master-wrap_fixed');
+                document.body.style.overflow = 'hidden';
             } else {
                 gw.style.transform = `scale(1)`;
                 mw.classList.remove('master-wrap_fixed');
+                document.body.style.overflow = '';
             }
         }
         },
