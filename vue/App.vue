@@ -61,6 +61,16 @@ export default {
         }),
         fullscreen() {
             this.full = !this.full;
+                    const mw = document.querySelector('.master-wrap');
+        const gw = document.querySelector('.game-wrap');
+        if(mw) {
+            if(this.full) {
+                mw.classList.add('master-wrap_fixed');
+            } else {
+                gw.style.transform = `scale(1)`;
+                mw.classList.remove('master-wrap_fixed');
+            }
+        }
         },
     },
     data() {
