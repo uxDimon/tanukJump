@@ -22,13 +22,13 @@
                 </div>
             </div>
         </div>
-        <div class="bot-panel__logo" @click="animateHeartMinus">
+        <div class="bot-panel__logo">
             <main-logo></main-logo>
         </div>
         <div class="bot-panel__right">
             <div class="bot-panel__info">
                 <div class="info-bar">
-                    <div class="info-bar__name" @click="comboPlus">Комбо!</div>
+                    <div class="info-bar__name">Комбо!</div>
                     <div class="info-bar__body" style="width: 72px">
                         {{"×"}}{{combo}}
                     </div>

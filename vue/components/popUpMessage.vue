@@ -2,7 +2,7 @@
     <div class="pop-up__item_message">
         <tanuki-message
             class="pop-up__tanuki-message"
-            :message="`Надеюсь, ты умеешь прыгать достаточно высоко, ${userName}! <br/> A главное - вовремя!`"
+            :message="`Надеюсь, ты умеешь прыгать достаточно высоко, ${userName}! <br/> A главное — вовремя!`"
             :face="1"
         ></tanuki-message>
         <div @click="next" class="action-button">

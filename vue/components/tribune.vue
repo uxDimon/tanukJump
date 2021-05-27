@@ -17,7 +17,7 @@
                 :style="person.style"
             ></person-animait>
         </div>
-        <div class="action-button panel-action-button" @click="setGreatPoint">
+        <div class="action-button panel-action-button" @click="setGreatPoint" @keyup.space="setGreatPoint">
             <button-g name="Прыгай!" :disabled="jumpButtonClose"></button-g>
         </div>
 
@@ -55,6 +55,13 @@ for (const key in modules) {
 }
 
 export default {
+    created() {
+        document.body.onkeyup = (e) => {
+            if(e.keyCode == 32 && !this.jumpButtonClose) {
+                this.setGreatPoint();
+            }
+        }
+    },
     components: {
         personAnimait,
         explosion,
