@@ -12,7 +12,7 @@
                 name="Да!"
                 :event="'newGame'"
             ></button-g>
-            <button-g class="pop-up__botton-failure" name="Нет!" :event="'location'"></button-g>
+            <button-g class="pop-up__botton-failure" name="Нет" :event="'location'"></button-g>
         </div>
     </div>
 </template>

@@ -2,7 +2,7 @@
     <div class="pop-up__item_message">
         <tanuki-message
             class="pop-up__tanuki-message"
-            :message="`Надеюсь, ты умеешь прыгать достаточно высоко, ${userName}! <br/> A главное — вовремя!`"
+            :message="`Привет, ${userName}! Прыгай как можно выше, чтобы показать, как ты болеешь за наших спортсменов! Для этого тебе нужно вовремя нажимать кнопку прыжка. Готов? Тогда жми «СТАРТ!»`"
             :face="1"
         ></tanuki-message>
         <div @click="next" class="action-button">
