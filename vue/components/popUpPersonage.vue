@@ -1,6 +1,6 @@
 <template>
     <div class="pop-up__item_personage">
-        <h2 class="pop-up__h">Выбери персонажа</h2>
+        <h2 class="pop-up__h">ВЫБЕРИ СВОЕГО ГЕРОЯ</h2>
         <div class="pop-up__personage-wrap">
             <button
                 class="pop-up__personage"
