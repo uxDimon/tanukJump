@@ -57,7 +57,7 @@ $font-number: "Quantico", sans-serif;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 490px;
+    width: 659px;
 }
 
 .tanuki-message__img {
@@ -102,16 +102,16 @@ $font-number: "Quantico", sans-serif;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    padding: 48px 12px 30px;
+    padding: 19px 12px 5px;
     background: linear-gradient(180deg, #181836 0%, #323251 100%);
     box-shadow: 0px 10px 0px #181836;
-    border-radius: 75px;
+    border-radius: 108px;
     margin-left: 58px;
     font-family: $font-primary;
     font-style: normal;
     font-weight: bold;
     font-size: 23px;
-    line-height: 100%;
+    line-height: 122%;
     text-align: center;
     color: #ffffff;
 }
